@@ -16,9 +16,11 @@ const authMiddleware = asyncHandler(async (req, res, next) => {
         next();
       }
     } catch (error) {
+      res.json({ error: "Not Authorized token expired, Please Login agian" });
       throw new Error("Not Authorized token expired, Please Login agian");
     }
   } else {
+    res.json({ error: "THis is no token attached to headers" });
     throw new Error("THis is no token attached to headers");
   }
 });
