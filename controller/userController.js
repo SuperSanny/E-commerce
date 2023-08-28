@@ -199,6 +199,54 @@ const unblockUser = asyncHandler(async (req, res) => {
   }
 });
 
+//Update Password
+// const updatePassword = asyncHandler(async (req, res) => {
+//   const { _id } = req.user;
+//   const { password } = req.body;
+//   // validateMongoDbId(_id);
+//   try {
+//     const user = await User.findById(_id);
+//     if (!user) {
+//       return res.status(404).json({ error: "User not found." });
+//     }
+//     if (password) {
+//       user.password = password;
+//       console.log(user.password);
+//       const updatePassword = await user.save();
+//       res.json(updatePassword);
+//     } else {
+//       res.json(user);
+//     }
+//   } catch (error) {
+//     console.error("Error updating password:", error);
+//     res.status(500).json({ error: "Failed to update password." });
+//   }
+// });
+const updatePassword = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  const { password } = req.body;
+  // validateMongoDbId(_id);
+  try {
+    const user = await User.findById(_id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found." });
+    }
+
+    if (password) {
+      user.password = password;
+      console.log("Updating password:", user.password);
+      const updatedUser = await user.save();
+      console.log("Password updated successfully!");
+      res.json(updatedUser);
+    } else {
+      res.status(400).json({ error: "Password is required." });
+    }
+  } catch (error) {
+    console.error("Error updating password:", error);
+    res.status(500).json({ error: "Failed to update password." });
+  }
+});
+
 module.exports = {
   createUser,
   loginUser,
@@ -210,4 +258,5 @@ module.exports = {
   unblockUser,
   handleRefreshToken,
   logout,
+  updatePassword,
 };
