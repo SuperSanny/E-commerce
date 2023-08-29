@@ -3,6 +3,7 @@ const dbConnect = require("./config/dbConnect");
 const dotenv = require("dotenv").config();
 const authRouter = require("./routes/authRoute");
 const productRouter = require("./routes/productRoute");
+const blogRouter = require("./routes/blogRoute");
 const bodyParser = require("body-parser");
 const errorHandler = require("./middlewares/errorHandler");
 const cookieParser = require("cookie-parser");
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/api/users", authRouter);
 app.use("/api/product", productRouter);
+app.use("/api/blog", blogRouter);
 app.use(errorHandler);
 app.listen(PORT, () => {
   console.log(`Server is running at ${PORT}`);

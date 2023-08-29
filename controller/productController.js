@@ -54,7 +54,16 @@ const updateProduct = asyncHandler(async (req, res) => {
 });
 
 // Delete a product
-const deleteProduct = asyncHandler(async (req, res) => {});
+const deleteProduct = asyncHandler(async (req, res) => {
+  const id = req.params.id;
+  try {
+    const deleteProduct = await Product.findOneAndDelete(id);
+    res.json(deleteProduct);
+  } catch (err) {
+    res.json(err);
+    throw new Error(err);
+  }
+});
 
 // get all products
 const getAllProducts = asyncHandler(async (req, res) => {
