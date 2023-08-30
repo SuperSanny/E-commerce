@@ -1,4 +1,3 @@
-const { json } = require("body-parser");
 const Category = require("../models/productCategoryModel");
 const asyncHandler = require("express-async-handler");
 // const validateMongoDbId = require("../utils/validateMongoDbId");
