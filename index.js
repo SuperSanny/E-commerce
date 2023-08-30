@@ -6,6 +6,8 @@ const productRouter = require("./routes/productRoute");
 const blogRouter = require("./routes/blogRoute");
 const categoryRouter = require("./routes/productCategoryRouter");
 const blogCategoryRouter = require("./routes/blogCategoryRoute");
+const brandRouter = require("./routes/brandRoute");
+
 const bodyParser = require("body-parser");
 const errorHandler = require("./middlewares/errorHandler");
 const cookieParser = require("cookie-parser");
@@ -22,6 +24,7 @@ app.use("/api/products", productRouter);
 app.use("/api/blogs", blogRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/blogcategory", blogCategoryRouter);
+app.use("/api/brand", brandRouter);
 app.use(errorHandler);
 app.listen(PORT, () => {
   console.log(`Server is running at ${PORT}`);
