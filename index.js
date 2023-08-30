@@ -16,8 +16,8 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api/users", authRouter);
-app.use("/api/product", productRouter);
-app.use("/api/blog", blogRouter);
+app.use("/api/products", productRouter);
+app.use("/api/blogs", blogRouter);
 app.use(errorHandler);
 app.listen(PORT, () => {
   console.log(`Server is running at ${PORT}`);
